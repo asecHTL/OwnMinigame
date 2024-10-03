@@ -4,61 +4,149 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MiniGameFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
+import at.htlgkr.OwnMinigameAplication.databinding.ActivityMainBinding;
+import at.htlgkr.OwnMinigameAplication.databinding.FragmentMiniGameBinding;
+
 public class MiniGameFragment extends Fragment {
+    List<Question> list;
+    List<Question> listRenew;
+    Logic logic = new Logic();
+    private FragmentMiniGameBinding binding;
+    final String fileName = "questionFile.csv";
+    static Question questionRightNow;
+    static int points = 0;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public MiniGameFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MiniGameFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MiniGameFragment newInstance(String param1, String param2) {
-        MiniGameFragment fragment = new MiniGameFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mini_game, container, false);
+        binding = FragmentMiniGameBinding.inflate(inflater,container,false);
+
+        //Question Array wir gelessen
+        list = Question.getAllQuestions();
+
+
+
+
+
+
+        //Wenn Submit Button gedrückt wird --> Überprüfen ob mehr als 1 Radio Button gedrückt ist
+        //Wenn ja --> Clear Methode und Alert das mehrer Button gedrückt wurden und das man es erneut eigeben muss
+        //Wenn nein --> Überpüfen ob Question Correct beantwortet wurde
+        binding.btSubmitQuestions.setOnClickListener(view->{
+            checkRadioButtonClicked();
+            if (binding.rbA.isChecked()){
+                boolean tempA = logic.checkIfCorrect("A",questionRightNow);
+                if (tempA){
+                    try {
+                        binding.tvMessage.setText("Toll das war korekt!");
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    points++;
+                    binding.tvPoints.setText(String.valueOf(points));
+                    resetButtons();
+                }else{
+                    try {
+                        binding.tvMessage.setText("Das war nix :(((");
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    resetButtons();
+                }
+            } else if (binding.rbB.isChecked()) {
+                boolean tempB = logic.checkIfCorrect("B",questionRightNow);
+                if (tempB){
+                    try {
+                        binding.tvMessage.setText("Toll das war korekt!");
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    points++;
+                    binding.tvPoints.setText(String.valueOf(points));
+                    resetButtons();
+                }else{
+                    try {
+                        binding.tvMessage.setText("Das war nix :(((");
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    resetButtons();
+                }
+            } else if (binding.rbC.isChecked()) {
+                boolean tempC = logic.checkIfCorrect("C",questionRightNow);
+                if (tempC){
+                    try {
+                        binding.tvMessage.setText("Toll das war korekt!");
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    points++;
+                    binding.tvPoints.setText(String.valueOf(points));
+                    resetButtons();
+                }else{
+                    try {
+                        binding.tvMessage.setText("Das war nix :(((");
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    resetButtons();
+                }
+            }
+        });
+        binding.btClear.setOnClickListener(view ->{
+            resetButtons();
+        });
+        binding.btNextQuestion.setOnClickListener(view -> {
+            questionRightNow = logic.getQuestion(list);
+            binding.tvQuestions.setText(questionRightNow.getQuestion());
+            binding.tvOptionA.setText(questionRightNow.getOptionA());
+            binding.tvOptionB.setText(questionRightNow.getOptionB());
+            binding.tvOptionC.setText(questionRightNow.getOptionC());
+        });
+
+
+        return binding.getRoot();
+    }
+
+    public void checkRadioButtonClicked(){
+        if (binding.rbA.isChecked() && binding.rbB.isChecked() || binding.rbA.isChecked() && binding.rbC.isChecked() || binding.rbB.isChecked() && binding.rbC.isChecked()){
+            resetButtons();
+        }
+    }
+
+    public void resetButtons(){
+        binding.rbA.setChecked(false);
+        binding.rbA.setClickable(true);
+        binding.rbB.setChecked(false);
+        binding.rbB.setClickable(true);
+        binding.rbC.setChecked(false);
+        binding.rbC.setClickable(true);
+        binding.tvMessage.setText(null);
     }
 }
