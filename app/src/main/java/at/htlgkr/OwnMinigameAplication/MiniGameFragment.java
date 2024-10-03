@@ -39,6 +39,9 @@ public class MiniGameFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentMiniGameBinding.inflate(inflater,container,false);
 
+
+
+
         //Question Array wir gelessen
         list = Question.getAllQuestions();
         //Wenn Submit Button gedrückt wird --> Überprüfen ob mehr als 1 Radio Button gedrückt ist
@@ -118,11 +121,16 @@ public class MiniGameFragment extends Fragment {
             resetButtons();
         });
         binding.btStartingQuestion.setOnClickListener(view -> {
+            points = 0;
+            binding.tvPoints.setText(String.valueOf(points));
             questionRightNow = list.get(0);
             binding.tvQuestions.setText(questionRightNow.getQuestion());
             binding.tvOptionA.setText(questionRightNow.getOptionA());
             binding.tvOptionB.setText(questionRightNow.getOptionB());
             binding.tvOptionC.setText(questionRightNow.getOptionC());
+        });
+        binding.btExit.setOnClickListener(view -> {
+            System.exit(0);
         });
 
 
