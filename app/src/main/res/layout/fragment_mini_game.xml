@@ -185,14 +185,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/bt_nextQuestion"
+        android:id="@+id/bt_startingQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
         android:layout_marginTop="57dp"
         android:layout_marginEnd="35dp"
         android:layout_marginBottom="116dp"
-        android:text="Next"
+        android:text="Start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/bt_SubmitQuestions"
         app:layout_constraintStart_toStartOf="parent"

@@ -18,10 +18,8 @@ import at.htlgkr.OwnMinigameAplication.databinding.FragmentMiniGameBinding;
 
 public class MiniGameFragment extends Fragment {
     List<Question> list;
-    List<Question> listRenew;
     Logic logic = new Logic();
     private FragmentMiniGameBinding binding;
-    final String fileName = "questionFile.csv";
     static Question questionRightNow;
     static int points = 0;
 
@@ -43,12 +41,6 @@ public class MiniGameFragment extends Fragment {
 
         //Question Array wir gelessen
         list = Question.getAllQuestions();
-
-
-
-
-
-
         //Wenn Submit Button gedrückt wird --> Überprüfen ob mehr als 1 Radio Button gedrückt ist
         //Wenn ja --> Clear Methode und Alert das mehrer Button gedrückt wurden und das man es erneut eigeben muss
         //Wenn nein --> Überpüfen ob Question Correct beantwortet wurde
@@ -65,6 +57,7 @@ public class MiniGameFragment extends Fragment {
                     }
                     points++;
                     binding.tvPoints.setText(String.valueOf(points));
+                    setNextQuestion();
                     resetButtons();
                 }else{
                     try {
@@ -86,6 +79,7 @@ public class MiniGameFragment extends Fragment {
                     }
                     points++;
                     binding.tvPoints.setText(String.valueOf(points));
+                    setNextQuestion();
                     resetButtons();
                 }else{
                     try {
@@ -107,6 +101,7 @@ public class MiniGameFragment extends Fragment {
                     }
                     points++;
                     binding.tvPoints.setText(String.valueOf(points));
+                    setNextQuestion();
                     resetButtons();
                 }else{
                     try {
@@ -122,8 +117,8 @@ public class MiniGameFragment extends Fragment {
         binding.btClear.setOnClickListener(view ->{
             resetButtons();
         });
-        binding.btNextQuestion.setOnClickListener(view -> {
-            questionRightNow = logic.getQuestion(list);
+        binding.btStartingQuestion.setOnClickListener(view -> {
+            questionRightNow = list.get(0);
             binding.tvQuestions.setText(questionRightNow.getQuestion());
             binding.tvOptionA.setText(questionRightNow.getOptionA());
             binding.tvOptionB.setText(questionRightNow.getOptionB());
@@ -148,5 +143,13 @@ public class MiniGameFragment extends Fragment {
         binding.rbC.setChecked(false);
         binding.rbC.setClickable(true);
         binding.tvMessage.setText(null);
+    }
+
+    public void setNextQuestion(){
+        questionRightNow = logic.getQuestion(list);
+        binding.tvQuestions.setText(questionRightNow.getQuestion());
+        binding.tvOptionA.setText(questionRightNow.getOptionA());
+        binding.tvOptionB.setText(questionRightNow.getOptionB());
+        binding.tvOptionC.setText(questionRightNow.getOptionC());
     }
 }

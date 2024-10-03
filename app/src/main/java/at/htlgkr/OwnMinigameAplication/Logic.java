@@ -24,7 +24,7 @@ public class Logic {
     public Question getQuestion(List<Question>tempList){
         Question question;
 
-        for (int i= 0;i < tempList.size(); i++){
+        for (int i= 1;i < tempList.size(); i++){
            question = tempList.get(i);
            if (question.isQuestionDone() == false){
                question.setQuestionDone(true);
