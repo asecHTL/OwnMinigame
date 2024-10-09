@@ -22,6 +22,7 @@ public class MiniGameFragment extends Fragment {
     private FragmentMiniGameBinding binding;
     static Question questionRightNow;
     static int points = 0;
+    static boolean startClicked = false;
 
 
     public MiniGameFragment() {
@@ -121,13 +122,21 @@ public class MiniGameFragment extends Fragment {
             resetButtons();
         });
         binding.btStartingQuestion.setOnClickListener(view -> {
-            points = 0;
-            binding.tvPoints.setText(String.valueOf(points));
-            questionRightNow = list.get(0);
-            binding.tvQuestions.setText(questionRightNow.getQuestion());
-            binding.tvOptionA.setText(questionRightNow.getOptionA());
-            binding.tvOptionB.setText(questionRightNow.getOptionB());
-            binding.tvOptionC.setText(questionRightNow.getOptionC());
+            if (startClicked){
+                setNextQuestion();
+            }else{
+                points = 0;
+                binding.tvPoints.setText(String.valueOf(points));
+                questionRightNow = logic.getRandomQuestion(list);
+                binding.tvQuestions.setText(questionRightNow.getQuestion());
+                binding.tvOptionA.setText(questionRightNow.getOptionA());
+                binding.tvOptionB.setText(questionRightNow.getOptionB());
+                binding.tvOptionC.setText(questionRightNow.getOptionC());
+                startClicked = true;
+                binding.btStartingQuestion.setText("Skip");
+            }
+
+
         });
         binding.btExit.setOnClickListener(view -> {
             System.exit(0);
@@ -154,7 +163,7 @@ public class MiniGameFragment extends Fragment {
     }
 
     public void setNextQuestion(){
-        questionRightNow = logic.getQuestion(list);
+        questionRightNow = logic.getRandomQuestion(list);
         binding.tvQuestions.setText(questionRightNow.getQuestion());
         binding.tvOptionA.setText(questionRightNow.getOptionA());
         binding.tvOptionB.setText(questionRightNow.getOptionB());

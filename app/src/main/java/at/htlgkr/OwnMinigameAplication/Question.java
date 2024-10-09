@@ -92,6 +92,31 @@ public class Question {
         questions.add(new Question("Was ist die Hauptsprache in Brasilien?", "Spanisch", "Portugiesisch", "Französisch", "B", false));
         questions.add(new Question("Welcher Planet ist bekannt als der Rote Planet?", "Mars", "Venus", "Saturn", "A", false));
         questions.add(new Question("Was ist der chemische Begriff für Wasser?", "H2O", "CO2", "NaCl", "A", false));
+        questions.add(new Question("Welcher Kontinent ist der größte?", "Afrika", "Asien", "Europa", "B", false));
+        questions.add(new Question("Welches Gas ist am häufigsten in der Erdatmosphäre?", "Sauerstoff", "Stickstoff", "Kohlenstoffdioxid", "B", false));
+        questions.add(new Question("Was ist das Symbol für Gold im Periodensystem?", "Au", "Ag", "Fe", "A", false));
+        questions.add(new Question("Wie viele Planeten hat unser Sonnensystem?", "7", "8", "9", "B", false));
+        questions.add(new Question("In welchem Jahr begann der Erste Weltkrieg?", "1914", "1939", "1918", "A", false));
+        questions.add(new Question("Wer schrieb 'Romeo und Julia'?", "Johann Wolfgang von Goethe", "William Shakespeare", "Leo Tolstoi", "B", false));
+        questions.add(new Question("Wie heißt das kleinste Land der Welt?", "Vatikanstadt", "Monaco", "Liechtenstein", "A", false));
+        questions.add(new Question("Welche Farben hat die Flagge von Frankreich?", "Blau, Weiß, Rot", "Grün, Weiß, Rot", "Rot, Gelb, Schwarz", "A", false));
+        questions.add(new Question("Wer war der erste Präsident der Vereinigten Staaten?", "Abraham Lincoln", "George Washington", "Thomas Jefferson", "B", false));
+        questions.add(new Question("Welches Metall hat das Symbol 'Fe'?", "Eisen", "Kupfer", "Zink", "A", false));
+        questions.add(new Question("Welche Stadt liegt am berühmten Kolosseum?", "Rom", "Paris", "Athen", "A", false));
+        questions.add(new Question("Welcher Planet ist der Sonne am nächsten?", "Mars", "Merkur", "Venus", "B", false));
+        questions.add(new Question("Wer malte das Deckengemälde der Sixtinischen Kapelle?", "Leonardo da Vinci", "Michelangelo", "Raphael", "B", false));
+        questions.add(new Question("Wie viele Zähne hat ein erwachsener Mensch normalerweise?", "28", "32", "30", "B", false));
+        questions.add(new Question("Welches Land ist flächenmäßig das größte?", "Kanada", "China", "Russland", "C", false));
+        questions.add(new Question("In welcher Einheit wird elektrische Leistung gemessen?", "Watt", "Volt", "Ampere", "A", false));
+        questions.add(new Question("Welches ist das am häufigsten vorkommende Metall in der Erdkruste?", "Aluminium", "Eisen", "Kupfer", "A", false));
+        questions.add(new Question("Welche Sprache hat die meisten Muttersprachler weltweit?", "Englisch", "Spanisch", "Mandarin", "C", false));
+        questions.add(new Question("Wer komponierte die 9. Sinfonie?", "Ludwig van Beethoven", "Johann Sebastian Bach", "Wolfgang Amadeus Mozart", "A", false));
+        questions.add(new Question("In welchem Jahr fiel die Berliner Mauer?", "1989", "1991", "1987", "A", false));
+        questions.add(new Question("Was ist das kleinste Organ im menschlichen Körper?", "Gallenblase", "Thymusdrüse", "Stirnbein", "B", false));
+        questions.add(new Question("Wie viele Tasten hat ein klassisches Klavier?", "88", "76", "92", "A", false));
+        questions.add(new Question("Wer schrieb 'Der Alte Mann und das Meer'?", "Ernest Hemingway", "F. Scott Fitzgerald", "Mark Twain", "A", false));
+        questions.add(new Question("Welche Farbe hat der Blutmond?", "Blau", "Rot", "Gelb", "B", false));
+        questions.add(new Question("Welches Land hat die längste Küstenlinie der Welt?", "Australien", "Kanada", "Indonesien", "B", false));
 
         return questions;
     }
